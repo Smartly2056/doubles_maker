@@ -1,6 +1,5 @@
 'use strict';
 
-const pairingForm = document.getElementById('paringForm');
 const pairingSection = document.getElementById('pairing');
 const courtList = document.getElementsByName('court_num');
 const playerNumSelect = document.getElementById('playerNumSelect');
@@ -57,7 +56,15 @@ playerNumSelect.addEventListener('change', () => {
 
 
 create.addEventListener('click', () => {
-    generateParings(courtNum, playerNum);
+
+    // 以前のゲーム表を削除
+    if (pairingSection.firstChild) {
+        while (pairingSection.firstChild) {
+            pairingSection.removeChild(pairingSection.firstChild);
+        }
+    }
+
+    generatePairings(courtNum, playerNum);
     create.disabled = true;
     reset.disabled = false;
 });
@@ -126,8 +133,8 @@ function getPlayerNumIndex(playerList, player_len) {
 
 
 // ゲーム表作成
-function generateParings(courtNumValue, playerNumValue) {
-    const section = document.getElementById('paring');
+function generatePairings(courtNumValue, playerNumValue) {
+    const section = document.getElementById('pairing');
 
     for (let i = 0; i < 20; i++) {
         let source = [];
@@ -169,8 +176,6 @@ function generateParings(courtNumValue, playerNumValue) {
 
         section.appendChild(game);
 
-        console.log(combination);
-        console.log(section);
 
     }
 }
