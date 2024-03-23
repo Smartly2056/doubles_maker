@@ -22,13 +22,15 @@ console.log(playerNum);
 
 
 const playerOptions = [
-    [5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-    [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-    [12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
-    [16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+    [4, 5, 6, 7, 8, 9, 10, 11],
+    [8, 9, 10, 11, 12, 13, 14, 15],
+    [12, 13, 14, 15, 16, 17, 18, 19],
+    [16, 17, 18, 19, 20, 21, 22, 23],
 ];
 
 courtNumSelect.addEventListener('change', () => {
+    create.disabled = true;
+
     // 一度ラジオボタンのチェックを外す
     if (courtNum > 0) {
         courtList.item(courtNum - 1).checked = false;
@@ -42,6 +44,7 @@ courtNumSelect.addEventListener('change', () => {
     courtNum = countCourt(courtList, court_len);
     showPlayerOptions(courtNum);
 
+
     // 人数の選択肢リストの定義
     playerList = document.getElementsByName('player_num');
     player_len = playerList.length;
@@ -54,8 +57,6 @@ playerNumSelect.addEventListener('change', () => {
     playerNum = countPlayers(playerList, player_len);
     controller.classList.remove('hidden');
     create.disabled = false;
-
-
 });
 
 
@@ -177,22 +178,22 @@ function generatePairings(courtNumValue, playerNumValue) {
             }
             game.appendChild(div);
         }
-        
-        
+
+
         // 待機者の表示
         if (combination.length > courtNumValue * 4) {
             const div_w = document.createElement('div');
             div_w.classList.add('waiting');
             const p = document.createElement('p');
-            p.textContent = '待機者 :'
+            p.textContent = '待機者:'
             const ul = document.createElement('ul');
-            
+
             for (let p = 0; p < (combination.length - courtNumValue * 4); p++) {
                 let li = document.createElement('li');
                 li.textContent = combination[combination.length - p - 1];
                 ul.appendChild(li);
             };
-            
+
             div_w.appendChild(p);
             div_w.appendChild(ul);
             game.appendChild(div_w);
