@@ -52,7 +52,9 @@ playerNumSelect.addEventListener('change', () => {
 
     // playerNumIndex = getPlayerNumIndex(playerList, player_len)
     playerNum = countPlayers(playerList, player_len);
+    controller.classList.remove('hidden');
     create.disabled = false;
+
 
 });
 
@@ -67,6 +69,7 @@ create.addEventListener('click', () => {
     }
 
     generatePairings(courtNum, playerNum);
+
     create.disabled = true;
     reset.disabled = false;
 });
@@ -177,7 +180,6 @@ function generatePairings(courtNumValue, playerNumValue) {
         }
 
         section.appendChild(game);
-
 
     }
 }

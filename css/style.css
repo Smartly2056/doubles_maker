@@ -2,45 +2,118 @@
 
 body {
     padding: 20px;
+    width: 375px;
+    margin: 0 auto;
+    background: rgb(255, 242, 223);
 }
 
 h1 {
     text-align: center;
 }
 
+
 fieldset {
-    margin-top: 20px;
+    margin-top: 30px;
     border: none;
     text-align: start;
     font-size: 20px;
 }
 
+fieldset legend {
+    margin: 0;
+    font-weight: bold;
+}
+
+fieldset label {
+    margin-top:10px;
+    margin-left: 10px;
+}
+
+fieldset input {
+    display: inline-block;
+    margin: 0 5px 0 10px;
+    transform: scale(1.5);    
+}
+
+#courtNumSelect {
+    display: grid;
+    grid-template-columns: repeat(2, 180px);
+    grid-template-rows: repeat(2, 50px);
+}
+
+#playerNumSelect {
+    display: grid;
+    grid-template-columns: repeat(4, 90px);
+    grid-template-rows: repeat(3, 50px);
+}
+
+
+/* ボタン部分 */
 .controller {
-    width: 200px;
-    margin-left: 20px;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.controller.hidden {
     display: none;
 }
 
-.game {
-    width: 500px;
-    margin: 0 auto;
+.controller button {
+    /* all: unset; */
+    cursor: pointer;
+    border: 1px solid #888;
+    font-size: 18px;
+    border-radius: 3px;
     text-align: center;
+    vertical-align: middle;
+    padding: 8px 16px;
+    background: #eee;
+    box-shadow: 0 2px 2px #aaa;
+    user-select: none;
+}
+
+.controller button:hover {
+    opacity: .7;
+}
+
+.controller button:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 2px #aaa ;
+}
+
+/* ゲーム表部分 */
+#pairing {
+    margin-top: 80px;
+}
+
+.game {
+    margin: 30px auto 10px;
+    text-align: center;
+}
+
+.game h3 {
+    text-align: start;
+    padding-left: 60px;
+    margin: 10px;
 }
 
 span {
     font-size: 24px;
     display: inline-block;
-    width: 40px;
-    height:40px;
-    line-height: 40px;
+    width: 50px;
+    height:65px;
+    line-height: 65px;
     text-align: center;
     margin: 8px 2px;
 }
 
-
 span.player {
-    width: 80px;
+    width: 50px;
     box-sizing: border-box;
     border: 1px solid #000;
     border-radius: 3px;
+    background: rgb(255, 251, 251);
 }
