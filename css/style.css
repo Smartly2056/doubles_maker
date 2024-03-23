@@ -1,50 +1,55 @@
 @charset 'utf-8';
 
 body {
-    padding: 20px;
+    padding-top: 20px;
     width: 375px;
     margin: 0 auto;
     background: rgb(255, 242, 223);
+    box-sizing: border-box;
+    text-align: center;
 }
 
 h1 {
-    text-align: center;
+    /* text-align: center; */
+    /* font-size: 40px; */
 }
 
 
 fieldset {
-    margin-top: 30px;
+    /* text-align: center; */
+    margin: 60px 0 0;
+    padding: 0;
     border: none;
-    text-align: start;
-    font-size: 20px;
+    font-size: 28px;
 }
 
 fieldset legend {
-    margin: 0;
+    margin: 0 0 20px 0;
     font-weight: bold;
 }
 
 fieldset label {
-    margin-top:10px;
-    margin-left: 10px;
+    /* margin: 0 20px 0 0; */
 }
 
 fieldset input {
     display: inline-block;
-    margin: 0 5px 0 10px;
-    transform: scale(1.5);    
+    margin: 0 8px;
+    transform: scale(2);    
 }
 
 #courtNumSelect {
     display: grid;
-    grid-template-columns: repeat(2, 180px);
-    grid-template-rows: repeat(2, 50px);
+    justify-content: center;
+    grid-template-columns: repeat(1, 300px);
+    grid-template-rows: repeat(4, 70px);
 }
 
 #playerNumSelect {
     display: grid;
-    grid-template-columns: repeat(4, 90px);
-    grid-template-rows: repeat(3, 50px);
+    justify-content: center;
+    grid-template-columns: repeat(3, 130px);
+    grid-template-rows: repeat(4, 80px);
 }
 
 
@@ -86,32 +91,34 @@ fieldset input {
 
 /* ゲーム表部分 */
 #pairing {
+    font-size: 28px;
     margin-top: 80px;
 }
 
 .game {
-    margin: 30px auto 10px;
+    margin: 40px auto 10px;
     text-align: center;
 }
 
 .game h3 {
+    font-size: 24px;
     text-align: start;
-    padding-left: 60px;
+    padding-left: 30px;
     margin: 10px;
 }
 
 span {
-    font-size: 24px;
+    font-size: 28px;
     display: inline-block;
-    width: 50px;
-    height:65px;
-    line-height: 65px;
+    width: 60px;
+    height:70px;
+    line-height: 70px;
     text-align: center;
     margin: 8px 2px;
 }
 
 span.player {
-    width: 50px;
+    width: 60px;
     box-sizing: border-box;
     border: 1px solid #000;
     border-radius: 3px;
