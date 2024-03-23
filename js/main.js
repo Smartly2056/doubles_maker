@@ -175,8 +175,27 @@ function generatePairings(courtNumValue, playerNumValue) {
                     div.appendChild(vsSpan);
                 }
             }
-
             game.appendChild(div);
+        }
+        
+        
+        // 待機者の表示
+        if (combination.length > courtNumValue * 4) {
+            const div_w = document.createElement('div');
+            div_w.classList.add('waiting');
+            const p = document.createElement('p');
+            p.textContent = '待機者 :'
+            const ul = document.createElement('ul');
+            
+            for (let p = 0; p < (combination.length - courtNumValue * 4); p++) {
+                let li = document.createElement('li');
+                li.textContent = combination[combination.length - p - 1];
+                ul.appendChild(li);
+            };
+            
+            div_w.appendChild(p);
+            div_w.appendChild(ul);
+            game.appendChild(div_w);
         }
 
         section.appendChild(game);

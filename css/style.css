@@ -137,3 +137,19 @@ span.player {
     border-radius: 3px;
     background: rgb(255, 251, 251);
 }
+
+.waiting {
+    display: flex;
+    margin-left: 20px;
+    font-size: 24px;
+}
+
+.waiting ul {
+    display: flex;
+    padding: 0;
+}
+
+.waiting li {
+    list-style: none;
+    width: 40px;
+}
