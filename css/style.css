@@ -31,7 +31,7 @@ fieldset legend {
 fieldset input {
     display: inline-block;
     transform: scale(2);   
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 
 #courtNumSelect {
@@ -58,6 +58,11 @@ fieldset input {
 
 #playerNumSelect input {
     margin: 0 8px 0 0;
+}
+
+#playerNumSelect label {
+    display: inline-block;
+    width: 130px;
 }
 
 
