@@ -13,6 +13,8 @@ let playerNumIndex;
 
 const create = document.getElementById('create');
 const reset = document.getElementById('reset');
+const controller = document.getElementById('controller');
+
 
 
 console.log(courtNum);
