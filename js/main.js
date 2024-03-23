@@ -161,12 +161,13 @@ function generatePairings(courtNumValue, playerNumValue) {
             for (let k = 0; k < 4; k++) {
                 let span = document.createElement('span');
                 span.textContent = combination[j * 4 + k];
-                span.classList.add('player');
+                span.className = "font-bold inline-block w-80 h-40";
                 div.appendChild(span);
 
                 if (k == 1) {
                     let vsSpan = document.createElement('span');
                     vsSpan.textContent = 'vs';
+                    vsSpan.className = "font-bold";
                     div.appendChild(vsSpan);
                 }
             }
