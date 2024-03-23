@@ -1,7 +1,7 @@
 @charset 'utf-8';
 
 body {
-    padding-top: 20px;
+    padding-top: 10px;
     width: 375px;
     margin: 0 auto;
     background: rgb(255, 242, 223);
@@ -17,25 +17,21 @@ h1 {
 
 fieldset {
     /* text-align: center; */
-    margin: 60px 0 0;
+    margin: 56px 0 0;
     padding: 0;
     border: none;
     font-size: 28px;
 }
 
 fieldset legend {
-    margin: 0 0 20px 0;
+    margin-bottom: 40px;
     font-weight: bold;
-}
-
-fieldset label {
-    /* margin: 0 20px 0 0; */
 }
 
 fieldset input {
     display: inline-block;
-    margin: 0 8px;
-    transform: scale(2);    
+    transform: scale(2);   
+    vertical-align: middle;
 }
 
 #courtNumSelect {
@@ -45,6 +41,14 @@ fieldset input {
     grid-template-rows: repeat(4, 70px);
 }
 
+#courtNumSelect label {
+    padding-right: 30px;
+}
+
+#courtNumSelect input {
+    margin: 0 8px;
+}
+
 #playerNumSelect {
     display: grid;
     justify-content: center;
@@ -52,11 +56,15 @@ fieldset input {
     grid-template-rows: repeat(4, 80px);
 }
 
+#playerNumSelect input {
+    margin: 0 8px 0 0;
+}
+
 
 /* ボタン部分 */
 .controller {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 56px;
     display: flex;
     justify-content: center;
     gap: 50px;
@@ -70,11 +78,11 @@ fieldset input {
     /* all: unset; */
     cursor: pointer;
     border: 1px solid #888;
-    font-size: 18px;
+    font-size: 24px;
     border-radius: 3px;
     text-align: center;
     vertical-align: middle;
-    padding: 8px 16px;
+    padding: 12px 20px;
     background: #eee;
     box-shadow: 0 2px 2px #aaa;
     user-select: none;
@@ -92,7 +100,7 @@ fieldset input {
 /* ゲーム表部分 */
 #pairing {
     font-size: 28px;
-    margin-top: 80px;
+    margin-top: 100px;
 }
 
 .game {
