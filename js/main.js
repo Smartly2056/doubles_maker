@@ -14,7 +14,7 @@ let playerNumIndex;
 const create = document.getElementById('create');
 const reset = document.getElementById('reset');
 const controller = document.getElementById('controller');
-
+const element = document.documentElement;
 
 
 console.log(courtNum);
@@ -44,6 +44,12 @@ courtNumSelect.addEventListener('change', () => {
     courtNum = countCourt(courtList, court_len);
     showPlayerOptions(courtNum);
 
+    window.scrollTo({
+        top: 350,
+        left: 0,
+        behavior: "smooth",
+    });
+
 
     // 人数の選択肢リストの定義
     playerList = document.getElementsByName('player_num');
@@ -57,6 +63,12 @@ playerNumSelect.addEventListener('change', () => {
     playerNum = countPlayers(playerList, player_len);
     controller.classList.remove('hidden');
     create.disabled = false;
+
+    window.scrollTo({
+        top: 500,
+        left: 0,
+        behavior: "smooth",
+    });
 });
 
 
@@ -70,6 +82,14 @@ create.addEventListener('click', () => {
     }
 
     generatePairings(courtNum, playerNum);
+
+    // const section = document.getElementById('pairing');
+    // const rect = section.getBoundingClientRect().top
+    window.scrollTo({
+        top: 1000,
+        left: 0,
+        behavior: "smooth",
+    });
 
     create.disabled = true;
     reset.disabled = false;
