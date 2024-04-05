@@ -54,7 +54,6 @@ courtNumSelect.addEventListener('change', () => {
 });
 
 playerNumSelect.addEventListener('change', () => {
-
     // playerNumIndex = getPlayerNumIndex(playerList, player_len)
     playerNum = countPlayers(playerList, player_len);
     controller.classList.remove('hidden');
@@ -69,7 +68,6 @@ playerNumSelect.addEventListener('change', () => {
 
 
 create.addEventListener('click', () => {
-
     // 以前のゲーム表を削除
     if (pairingSection.firstChild) {
         while (pairingSection.firstChild) {
@@ -79,8 +77,6 @@ create.addEventListener('click', () => {
 
     generatePairings(courtNum, playerNum);
 
-    // const section = document.getElementById('pairing');
-    // const rect = section.getBoundingClientRect().top
     window.scrollTo({
         top: 1000,
         left: 0,
@@ -92,6 +88,10 @@ create.addEventListener('click', () => {
 });
 
 reset.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+    });
     window.location.reload();
 });
 
