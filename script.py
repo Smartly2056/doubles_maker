@@ -11,7 +11,7 @@ import pandas as pd
 driver = webdriver.Chrome()
 
 driver.get("http://tutti2056.github.io/doubles_maker/")
-time.sleep(2)
+time.sleep(0.5)
 
 # コート選択
 radio_court = driver.find_element(by=By.ID, value="court2")
@@ -22,7 +22,7 @@ if radio_court.is_enabled():
 else:
     print('nothing selected!')
     
-time.sleep(1)
+time.sleep(0.5)
 
 # 人数選択
 try:
@@ -31,7 +31,7 @@ try:
 except:
     print('nothing selected!')
     
-time.sleep(1)
+time.sleep(0.5)
     
     
 # ゲーム表作成
@@ -41,7 +41,7 @@ try:
 except:
     print('nothing created!')
     
-time.sleep(1)
+time.sleep(0.5)
 
 
 # 待機者取得
@@ -54,7 +54,7 @@ for waiting in waitings:
     for li in lis:        
         All_waiting.append(int(li.text))
     
-    time.sleep(1)
+    time.sleep(0.5)
 
 print(All_waiting)
 
@@ -62,20 +62,23 @@ print(All_waiting)
 for i in range(12):
     print(f'{i+1}: {All_waiting.count(i + 1)}')
 
-time.sleep(1)
+time.sleep(0.5)
 
 
 # ヒストグラム作成
-plt.hist(All_waiting, bins=12)
+plt.title('Waiting Counter')
+plt.xlabel('Player Number')
+plt.xticks([1,2,3,4,5,6,7,8,9,10,11,12])
+
+plt.hist(All_waiting, bins=range(min(All_waiting), max(All_waiting)+2), edgecolor='black')
 plt.show()
 
 
 
-driver.implicitly_wait(3)
+driver.implicitly_wait(1)
 # スクレイピング終了
 driver.quit()
 
-# print(f'h1_text: {h1_text}\n')
 
 
 
