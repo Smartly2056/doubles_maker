@@ -10,11 +10,14 @@ import pandas as pd
 
 driver = webdriver.Chrome()
 
+court_num = "court2"
+player_num = "player12"
+
 driver.get("http://tutti2056.github.io/doubles_maker/")
 time.sleep(0.5)
 
 # コート選択
-radio_court = driver.find_element(by=By.ID, value="court2")
+radio_court = driver.find_element(by=By.ID, value=court_num)
 
 if radio_court.is_enabled():
     radio_court.click()
@@ -22,16 +25,16 @@ if radio_court.is_enabled():
 else:
     print('nothing selected!')
     
-time.sleep(0.5)
+time.sleep(1)
 
 # 人数選択
 try:
-    radio_player = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "player12")))
+    radio_player = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, player_num)))
     radio_player.click()
 except:
     print('nothing selected!')
     
-time.sleep(0.5)
+time.sleep(1)
     
     
 # ゲーム表作成
