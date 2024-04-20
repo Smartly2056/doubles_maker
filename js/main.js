@@ -14,11 +14,7 @@ let playerNumIndex;
 const create = document.getElementById('create');
 const reset = document.getElementById('reset');
 const controller = document.getElementById('controller');
-
-
-
-console.log(courtNum);
-console.log(playerNum);
+const element = document.documentElement;
 
 
 const playerOptions = [
@@ -44,6 +40,12 @@ courtNumSelect.addEventListener('change', () => {
     courtNum = countCourt(courtList, court_len);
     showPlayerOptions(courtNum);
 
+    window.scrollTo({
+        top: 350,
+        left: 0,
+        behavior: "smooth",
+    });
+
 
     // 人数の選択肢リストの定義
     playerList = document.getElementsByName('player_num');
@@ -52,16 +54,20 @@ courtNumSelect.addEventListener('change', () => {
 });
 
 playerNumSelect.addEventListener('change', () => {
-
     // playerNumIndex = getPlayerNumIndex(playerList, player_len)
     playerNum = countPlayers(playerList, player_len);
     controller.classList.remove('hidden');
     create.disabled = false;
+
+    window.scrollTo({
+        top: 500,
+        left: 0,
+        behavior: "smooth",
+    });
 });
 
 
 create.addEventListener('click', () => {
-
     // 以前のゲーム表を削除
     if (pairingSection.firstChild) {
         while (pairingSection.firstChild) {
@@ -71,11 +77,21 @@ create.addEventListener('click', () => {
 
     generatePairings(courtNum, playerNum);
 
+    window.scrollTo({
+        top: 1000,
+        left: 0,
+        behavior: "smooth",
+    });
+
     create.disabled = true;
     reset.disabled = false;
 });
 
 reset.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+    });
     window.location.reload();
 });
 
@@ -127,7 +143,6 @@ function countPlayers(playerList, player_len) {
 }
 
 // 人数選択肢のindexを取得
-// playerNumIndex = getPlayerNumIndex(playerList, player_len)
 function getPlayerNumIndex(playerList, player_len) {
     for (let i = 0; i < player_len; i++) {
         if (playerList.item(i).checked) {
@@ -138,9 +153,15 @@ function getPlayerNumIndex(playerList, player_len) {
 }
 
 
+
+
 // ゲーム表作成
 function generatePairings(courtNumValue, playerNumValue) {
     const section = document.getElementById('pairing');
+
+    let waitingList = [];
+    let waitingNum = 0;
+    let idx;
 
     for (let i = 0; i < 20; i++) {
         let source = [];
@@ -148,10 +169,25 @@ function generatePairings(courtNumValue, playerNumValue) {
             source[j] = j + 1;
         }
 
+        // 前試合の待機者を除くソースリストを作成
+        for (let j = 0; j < waitingNum; j++) {
+            source.splice(waitingList[j] - j - 1, 1);
+        }
+        console.log(source);
+        
+        // ソースリスト内をシャッフル
         let combination = [];
-        for (let j = 0; j < playerNumValue; j++) {
+        for (let j = 0; j < (playerNumValue - waitingNum); j++) {
             combination[j] = source.splice(Math.floor(Math.random() * (source.length)), 1)[0];
         }
+
+        // 前試合の待機者をソースリストの前半に挿入
+        for (let j = 0; j < waitingNum; j++) {
+            idx = Math.floor(Math.random() * (playerNumValue - waitingNum * 2 + j));
+            combination.splice(idx, 0, waitingList[j]);
+        }
+        console.log(combination);
+
 
         let game = document.createElement('div');
         game.classList.add('game');
@@ -161,9 +197,11 @@ function generatePairings(courtNumValue, playerNumValue) {
         game.appendChild(gameName);
 
 
+        // 各コートのプレイヤーを表示
         for (let j = 0; j < courtNumValue; j++) {
             let div = document.createElement('div');
 
+            // ソースリストの0番目のプレイヤーから順に試合を割り当てる
             for (let k = 0; k < 4; k++) {
                 let span = document.createElement('span');
                 span.textContent = combination[j * 4 + k];
@@ -181,6 +219,8 @@ function generatePairings(courtNumValue, playerNumValue) {
 
 
         // 待機者の表示
+        waitingList = [];   // 待機者リストを初期化
+
         if (combination.length > courtNumValue * 4) {
             const div_w = document.createElement('div');
             div_w.classList.add('waiting');
@@ -192,11 +232,17 @@ function generatePairings(courtNumValue, playerNumValue) {
                 let li = document.createElement('li');
                 li.textContent = combination[combination.length - p - 1];
                 ul.appendChild(li);
+
+                waitingList.push(combination[combination.length - p - 1]);  // 待機者リストに待機者を追加
             };
 
             div_w.appendChild(p);
             div_w.appendChild(ul);
             game.appendChild(div_w);
+
+            waitingList.sort(compareNumbers);   // 待機者リストをソート
+            console.log(waitingList);
+            waitingNum = waitingList.length;    // 待機人数を取得
         }
 
         section.appendChild(game);
@@ -204,7 +250,9 @@ function generatePairings(courtNumValue, playerNumValue) {
     }
 }
 
-
-
+// ソート関数
+function compareNumbers(a, b) {
+    return a - b;
+}
 
 
